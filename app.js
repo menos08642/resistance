@@ -8,6 +8,8 @@ var routes = require('./routes');
 var user = require('./routes/user');
 var create_game = require('./routes/create_game');
 var chat = require('./routes/chat');
+var player = require('./routes/player');
+var runninggame = require('./routes/runninggame');
 var http = require('http');
 var path = require('path');
 var socketio = require('socket.io');
@@ -35,11 +37,15 @@ app.get('/', routes.index);
 app.get('/create_game', create_game.main);
 app.get('/users', user.list);
 app.get('/chat', chat.main);
+app.get('/player', player.main);
+app.get('/runninggame', runninggame.main);
 
 var server = app.listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
 });
 var io = socketio.listen(server);
+
+//Chat Logic
 var clients = {};
  
 var socketsOfClients = {};
@@ -117,3 +123,7 @@ function userNameAlreadyInUse(sId, uName) {
     io.sockets.sockets[sId].emit('error', { "userNameInUse" : true });
   }, 500);
 }
+
+//Player Interaction
+//We will keep all of the player interactions here.
+//Votes, Missions, Mission players
