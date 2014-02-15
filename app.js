@@ -46,6 +46,7 @@ var server = app.listen(app.get('port'), function(){
 var io = socketio.listen(server);
 
 //Chat Logic
+//This is the test case chat implementation
 var clients = {};
  
 var socketsOfClients = {};
@@ -127,3 +128,13 @@ function userNameAlreadyInUse(sId, uName) {
 //Player Interaction
 //We will keep all of the player interactions here.
 //Votes, Missions, Mission players
+//Server Sets Game State
+//--Tells Each Player What Their Required Action is
+//1)Player Joins Game
+//2)Player Nominates Team Members
+//3)Leader Calls for Vote
+//4)Player Votes on Team
+//5)Player Plays Mission Card
+//6)Leader Assigns Plot Cards(if in play)
+//7)Leader Plays Lady(if in play)
+
